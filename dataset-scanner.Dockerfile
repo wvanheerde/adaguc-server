@@ -14,6 +14,7 @@ RUN yum update -y && \
     gdal \
     hdf5 \
     libxml2 \
+    libwebp-devel \
     postgresql-server \
     proj \
     udunits2 \
@@ -65,13 +66,14 @@ RUN yum update -y && \
     proj \
     udunits2 \
     openssl \
+    libwebp-devel \
     netcdf && \
     yum clean all && \
     rm -rf /var/cache/yum
 
 WORKDIR /adaguc/adaguc-server-master
-   
-# Install compiled adaguc binaries from stage one    
+
+# Install compiled adaguc binaries from stage one
 COPY --from=0 /adaguc/adaguc-server-master/bin /adaguc/adaguc-server-master/bin
 COPY --from=0 /adaguc/adaguc-server-master/data /adaguc/adaguc-server-master/data
 COPY --from=0 /adaguc/adaguc-server-master/tests /adaguc/adaguc-server-master/tests
@@ -99,7 +101,7 @@ RUN curl -L https://jitpack.io/com/github/KNMI/adaguc-services/1.2.0/adaguc-serv
     mkdir -p /adaguc/security && \
     mkdir -p /data/adaguc-datasets-internal && \
     mkdir -p /servicehealth
-    
+
 # Configure
 COPY ./Docker/adaguc-server-config.xml /adaguc/adaguc-server-config.xml
 COPY ./Docker/adaguc-services-config.xml /adaguc/adaguc-services-config.xml
