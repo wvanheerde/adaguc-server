@@ -64,7 +64,6 @@ RUN yum update -y && \
     gdal \
     hdf5 \
     libxml2 \
-    nmap-ncat \
     proj \
     postgresql \
     udunits2 \
